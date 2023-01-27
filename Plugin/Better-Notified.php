@@ -38,14 +38,14 @@ add_action('admin_menu', 'Better_Notified_create_menu');
 
 function Better_Notified_create_menu()
 {
-    register_setting('Better-Notified-option', 'Telegram_bot_token');
-    register_setting('Better-Notified-option', 'Telegram_chat_id');
+    register_setting('telegram-admin-emails', 'Telegram_bot_token');
+    register_setting('telegram-admin-emails', 'Telegram_chat_id');
 
     add_options_page(
         'Better Notified',
         'Better Notified',
         'manage_options',
-        'Better-Notified-option-settings',
+        'telegram-admin-emails-settings',
         'Better_Notified_settings_page'
     );
 }
@@ -54,15 +54,15 @@ add_action('network_admin_menu', 'Better_Notified_create_network_menu');
 
 function Better_Notified_create_network_menu()
 {
-    register_setting('Better-Notified-option', 'Telegram_bot_token');
-    register_setting('Better-Notified-option', 'Telegram_chat_id');
+    register_setting('telegram-admin-emails', 'Telegram_bot_token');
+    register_setting('telegram-admin-emails', 'Telegram_chat_id');
 
     add_submenu_page(
         'settings.php',
         'Better Notified',
         'Better Notified',
         'manage_options',
-        'Better-Notified-option-settings',
+        'telegram-admin-emails-settings',
         'Better_Notified_settings_page'
     );
 }
@@ -79,9 +79,9 @@ function Better_Notified_settings_page()
 
     function Better_Notified_enqueue_scripts()
     {
-        if (isset($_GET['page']) && $_GET['page'] === 'Better-Notified-option-settings') {
+        if (isset($_GET['page']) && $_GET['page'] === 'telegram-admin-emails-settings') {
             wp_enqueue_script('jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js', array(), '3.6.0', true);
-            wp_enqueue_script('Better-Notified-option-test', plugin_dir_url(__FILE__) . 'js/Better-Notified-option-test.js', array('jquery'), '1.0', true);
+            wp_enqueue_script('telegram-admin-emails-test', plugin_dir_url(__FILE__) . 'js/telegram-admin-emails-test.js', array('jquery'), '1.0', true);
         }
     }
     add_action('admin_enqueue_scripts', 'Better_Notified_enqueue_scripts');
@@ -94,31 +94,31 @@ function Better_Notified_settings_page()
 
         <form method="post" action="options.php">
             <?php
-            settings_fields('Better-Notified-option');
-            do_settings_sections('Better-Notified-option');
+            settings_fields('telegram-admin-emails');
+            do_settings_sections('telegram-admin-emails');
             ?>
             <table class="form-table">
                 <tbody>
                     <tr>
                         <th scope="row">
-                            <label for="Telegram_bot_token"><?php esc_html_e('Telegram Bot Token', 'Better-Notified-option'); ?></label>
+                            <label for="Telegram_bot_token"><?php esc_html_e('Telegram Bot Token', 'telegram-admin-emails'); ?></label>
                         </th>
                         <td>
                             <input name="Telegram_bot_token" type="text" id="Telegram_bot_token" value="<?php
                                                                                                         echo esc_attr($Telegram_bot_token); ?>" class="regular-text">
                             <p class="description" id="Telegram_bot_token-description">
-                                <?php esc_html_e('Enter your Telegram bot token. You can create a new bot and get its token from the Bot Father.', 'Better-Notified-option'); ?>
+                                <?php esc_html_e('Enter your Telegram bot token. You can create a new bot and get its token from the Bot Father.', 'telegram-admin-emails'); ?>
                             </p>
                         </td>
                     </tr>
                     <tr>
                         <th scope="row">
-                            <label for="Telegram_chat_id"><?php esc_html_e('Telegram Chat ID', 'Better-Notified-option'); ?></label>
+                            <label for="Telegram_chat_id"><?php esc_html_e('Telegram Chat ID', 'telegram-admin-emails'); ?></label>
                         </th>
                         <td>
                             <input name="Telegram_chat_id" type="text" id="Telegram_chat_id" value="<?php echo esc_attr($Telegram_chat_id); ?>" class="regular-text">
                             <p class="description" id="Telegram_chat_id-description">
-                                <?php esc_html_e('Enter the chat ID of the Telegram chat where you want to receive admin emails. You can use a group chat ID or a user chat ID.', 'Better-Notified-option'); ?>
+                                <?php esc_html_e('Enter the chat ID of the Telegram chat where you want to receive admin emails. You can use a group chat ID or a user chat ID.', 'telegram-admin-emails'); ?>
                             </p>
                         </td>
                     </tr>
@@ -132,8 +132,8 @@ function Better_Notified_settings_page()
                 </tbody>
             </table>
             <?php submit_button();
-            register_setting('Better-Notified-option', 'Better-Notified-option');
-            add_settings_section('Better-Notified-option-section', 'Telegram Admin Emails Settings', '', 'Better-Notified-option');
+            register_setting('telegram-admin-emails', 'telegram-admin-emails');
+            add_settings_section('telegram-admin-emails-section', 'Telegram Admin Emails Settings', '', 'telegram-admin-emails');
 
             ?>
         </form>
@@ -143,7 +143,7 @@ function Better_Notified_settings_page()
 <?php
 }
 
-
+// New user register
 function Better_Notified_new_user_notification($user_id)
 {
     $telegram_bot_token = get_option('Telegram_bot_token');
@@ -151,10 +151,42 @@ function Better_Notified_new_user_notification($user_id)
     $user_info = get_userdata($user_id);
     $message = "New user registered: " . $user_info->user_login;
     if (!empty($telegram_bot_token) && !empty($telegram_chat_id)) {
-        $telegram_api_url = 'https://api.telegram.org/bot' . $telegram_bot_token . '/sendMessage?chat_id=' . $telegram_chat_id . '&text=' . $message;
+        $telegram_api_url = 'https://api.telegram.org/bot' . $telegram_bot_token . '/sendMessage?chat_id=' . $telegram_chat_id . '&text=' . urlencode($message);
         wp_remote_get($telegram_api_url);
     }
 }
+// plugin updates
+function Better_Notified_plugin_update_notification()
+{
+    $telegram_bot_token = get_option('Telegram_bot_token');
+    $telegram_chat_id = get_option('Telegram_chat_id');
+    $plugins = get_plugin_updates();
+    if (!empty($plugins)) {
+        $message .= "The following plugins have updates available:\n";
+        foreach ($plugins as $plugin) {
+            $message .= "- " . $plugin->Name . " (version " . $plugin->update->new_version . ")\n";
+        }
+        if (!empty($telegram_bot_token) && !empty($telegram_chat_id)) {
+            $telegram_api_url = 'https://api.telegram.org/bot' . $telegram_bot_token . '/sendMessage?chat_id=' . $telegram_chat_id . '&text=' . urlencode($message);
+            wp_remote_get($telegram_api_url);
+        }
+    }
+}
+// core updates
+function Better_Notified_core_update_notification()
+{
+    $telegram_bot_token = get_option('Telegram_bot_token');
+    $telegram_chat_id = get_option('Telegram_chat_id');
+    $updates = wp_get_update_data();
+    if ($updates['counts']['total'] > 0) {
+        $message .= "WordPress has " . $updates['counts']['total'] . " update(s) available.\n";
+    }
+    if (!empty($telegram_bot_token) && !empty($telegram_chat_id)) {
+        $telegram_api_url = 'https://api.telegram.org/bot' . $telegram_bot_token . '/sendMessage?chat_id=' . $telegram_chat_id . '&text=' . urlencode($message);
+        wp_remote_get($telegram_api_url);
+    }
+}
+
 
 //Send admin emails to Telegram
 
@@ -171,7 +203,7 @@ function Better_Notified_send_message($wp_error)
     }
 
     $message = sprintf(
-        __('An error occurred while trying to send an email: %s', 'Better-Notified-option'),
+        __('An error occurred while trying to send an email: %s', 'telegram-admin-emails'),
         $wp_error->get_error_message()
     );
 
@@ -181,15 +213,6 @@ function Better_Notified_send_message($wp_error)
 // Send admin emails to Telegram
 
 
-add_action('admin_bar_menu', 'multisite_notifications_admin_bar', 999);
-
-function multisite_notifications_admin_bar($wp_admin_bar)
-{
-    $wp_admin_bar->add_menu(array(
-        'id'    => 'multisite_notifications',
-        'title' => 'Notifications',
-        'href'  => '#',
-    ));
     /*
     // Check for Wordpress updates
     if (current_user_can('update_core')) {
