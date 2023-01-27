@@ -68,6 +68,8 @@ function Better_Notified_create_network_menu()
 }
 
 add_action('user_register', 'Better_Notified_new_user_notification', 10, 1);
+add_action('wp_update_plugins', 'Better_Notified_plugin_update_notification');
+add_action('wp_version_check', 'Better_Notified_core_update_notification');
 
 function Better_Notified_settings_page()
 {
@@ -162,7 +164,7 @@ function Better_Notified_plugin_update_notification()
     $telegram_chat_id = get_option('Telegram_chat_id');
     $plugins = get_plugin_updates();
     if (!empty($plugins)) {
-        $message .= "The following plugins have updates available:\n";
+        $message = "The following plugins have updates available:\n";
         foreach ($plugins as $plugin) {
             $message .= "- " . $plugin->Name . " (version " . $plugin->update->new_version . ")\n";
         }
@@ -179,7 +181,7 @@ function Better_Notified_core_update_notification()
     $telegram_chat_id = get_option('Telegram_chat_id');
     $updates = wp_get_update_data();
     if ($updates['counts']['total'] > 0) {
-        $message .= "WordPress has " . $updates['counts']['total'] . " update(s) available.\n";
+        $message = "WordPress has " . $updates['counts']['total'] . " update(s) available.\n";
     }
     if (!empty($telegram_bot_token) && !empty($telegram_chat_id)) {
         $telegram_api_url = 'https://api.telegram.org/bot' . $telegram_bot_token . '/sendMessage?chat_id=' . $telegram_chat_id . '&text=' . urlencode($message);
@@ -209,49 +211,4 @@ function Better_Notified_send_message($wp_error)
 
     $telegram_api_url = 'https://api.telegram.org/bot' . $Telegram_bot_token . '/sendMessage?chat_id=' . $Telegram_chat_id . '&text=' . urlencode($message);
     wp_remote_get($telegram_api_url);
-}
-// Send admin emails to Telegram
-
-
-    /*
-    // Check for Wordpress updates
-    if (current_user_can('update_core')) {
-        $update_data = check_for_update();
-        if ($update_data->updates[0]->response === 'upgrade') {
-            $wp_admin_bar->add_menu(array(
-                'parent' => 'multisite_notifications',
-                'id'     => 'wordpress_update',
-                'title'  => 'WordPress Update Available (' . $update_data->updates[0]->current . ')',
-                'href'   => admin_url('update-core.php'),
-                'meta'   => array('class' => 'wordpress-update'),
-            ));
-        }
-    }
-
-    // Check for plugin updates
-    if (current_user_can('update_plugins')) {
-        $update_plugins = get_site_transient('update_plugins');
-        if (!empty($update_plugins->response)) {
-            $wp_admin_bar->add_menu(array(
-                'parent' => 'multisite_notifications',
-                'id'     => 'plugin_updates',
-                'title'  => 'Plugin Updates Available',
-                'href'   => admin_url('update-core.php'),
-                'meta'   => array('class' => 'plugin-updates'),
-            ));
-        }
-    }
-
-    // Check for admin emails
-    global $wpdb;
-    $unread_emails = $wpdb->get_var("SELECT COUNT(*) FROM {$wpdb->prefix}admin_emails WHERE status = 'unread'");
-    if ($unread_emails > 0) {
-        $wp_admin_bar->add_menu(array(
-            'parent' => 'multisite_notifications',
-            'id'     => 'admin_emails',
-            'title'  => 'Admin Emails (' . $unread_emails . ')',
-            'href'   => admin_url('admin.php?page=admin_emails'),
-            'meta'   => array('class' => 'admin-emails'),
-        ));
-    }*/
 }
