@@ -1,0 +1,12 @@
+{
+	"name": "Telegram_Admin_Emails",
+	"version": "0.0.3 alpha",
+	"download_url": "https://reupenny.github.io/Azurestudio_Wordpress_Plugins/plugins/TAE/Telegram_Admin_Emails.zip",
+	"requires": "5.8.6",
+	"tested": "6.1.1",
+	"author": "Azure Studio",
+	"author_homepage": "https://azurestudio.co.nz",
+	"sections": {
+		"description": "This Plugin is provided by Azure Studio and will be updated automaticaly when stable versions are avalabe for your site."
+	}
+}
