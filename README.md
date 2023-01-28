@@ -6,10 +6,6 @@ Better Notified helps you stay informed about important events on your website. 
 
 Please note this is my first plugin for wordpress and I am new to PHP.
 
-<div align="center" width="100%">
-    <img src="Screenshot_1.png" alt="" />
-</div>
-
 ## Features
 
 🔹 Failed email notifications: Get notified immediately when an email fails to send.
@@ -23,6 +19,10 @@ Please note this is my first plugin for wordpress and I am new to PHP.
 🔹 Comments notifications: Stay informed about new comments on your website.
 
 🔹 Plugin Update Checker is being used to push updates.
+
+<div align="center" width="100%">
+    <img src="Screenshot_1.png" alt="" />
+</div>
 
 ## To Do List
 
