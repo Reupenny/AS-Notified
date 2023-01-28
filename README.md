@@ -1,6 +1,6 @@
 # Better Notified 🔔
 
-<img alt="GitHub manifest version" src="https://img.shields.io/github/manifest-json/v/Reupenny/Better-Notified">
+<img alt="GitHub tag (latest by date)" src="https://img.shields.io/github/v/tag/Reupenny/Better-Notified?label=Version"><img alt="GitHub last commit (by committer)" src="https://img.shields.io/github/last-commit/Reupenny/Better-Notified"><img alt="GitHub commits since latest release (by date including pre-releases)" src="https://img.shields.io/github/commits-since/Reupenny/Better-Notified/v0.1.1-beta?include_prereleases"><img alt="GitHub code size in bytes" src="https://img.shields.io/github/languages/code-size/Reupenny/Better-Notified"><img alt="GitHub file size in bytes on a specified ref (branch/commit/tag)" src="https://img.shields.io/github/size/Reupenny/Better-Notified/versions/Better-Notified-0.1.1b.zip?label=Plugin%20size">
 
 A Wordpress plugin to keep you notified of the important things.
 
