@@ -1,5 +1,7 @@
 # Better Notified 🔔
 
+<img alt="GitHub manifest version" src="https://img.shields.io/github/manifest-json/v/Reupenny/Better-Notified">
+
 A Wordpress plugin to keep you notified of the important things.
 
 Better Notified helps you stay informed about important events on your website. This plugin allows you to receive notifications about failed emails, new user registrations, plugin updates, core updates, and new comments in real-time through Telegram.
@@ -26,7 +28,7 @@ Stay informed about new comments on your website.
 🔹 Plugin Update Checker is being used to push updates.
 
 <div align="center" width="100%">
-    <img src="Screenshot_1.png" alt="" />
+    <img src="public/Screenshot_1.png" alt="" />
 </div>
 
 ## To Do List
