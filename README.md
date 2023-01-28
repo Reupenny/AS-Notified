@@ -19,3 +19,7 @@ Please note this is my first plugin for wordpress and i am new to PHP.
 ⬛️ Seperate out the single PHP file into different files such as a setting.php.
 
 Plugin Update Checker is being used to push updates.
+
+## Version 2
+
+🔲 Add Discord, Slack Notification Options
