@@ -28,6 +28,8 @@ Please note this is my first plugin for wordpress and I am new to PHP.
 
 🔲 Create a multisite instance
 
+🔲 Add setting toggle to disable emails for selected notifications
+
 ## Complete
 
 ⬛️ Add options in settings to disable and enable each notification type.
@@ -36,4 +38,11 @@ Please note this is my first plugin for wordpress and I am new to PHP.
 
 ## Version 2
 
-🔲 Add Discord, Slack Notification Options
+🔲 Add Discord, Slack, Pushover, Gotify Notification Options
+
+🔲 Allow users to add there own notification service instead of emails
+    changeable in user settings and also via a shortcode to be accessable on the front end
+
+## Version 3
+
+🔲 Add a notification center to hide all the annoying notifications that clutter the admin dashboard.
