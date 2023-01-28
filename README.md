@@ -37,6 +37,8 @@ Stay informed about new comments on your website.
 
 🔲 Add setting toggle to disable emails for selected notifications
 
+🔲 Add setting toggle to enable/disable silent notifications
+
 🔲 Add Woocommerce intergration, new orders, reviews
 
 🔲 Create uninstall.php
