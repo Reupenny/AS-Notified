@@ -2,9 +2,10 @@
 
 A Wordpress plugin to keep you notified of the important things.
 
-Please note this is my first plugin for wordpress and i am new to PHP.
+Better Notified helps you stay informed about important events on your website. This plugin allows you to receive notifications about failed emails, new user registrations, plugin updates, core updates, and new comments in real-time through Telegram.
 
-Better Notified is a Wordpress plugin that helps you stay informed about important events on your website. This plugin allows you to receive notifications about failed emails, new user registrations, plugin updates, core updates, and new comments in real-time through Telegram.
+Please note this is my first plugin for wordpress and i am new to PHP.
+Plugin Update Checker is being used to push updates.
 
 <div align="center" width="100%">
     <img src="Screenshot_1.png" alt="" />
@@ -31,8 +32,6 @@ Better Notified is a Wordpress plugin that helps you stay informed about importa
 ⬛️ Add options in settings to disable and enable each notification type.
 
 ⬛️ Seperate out the single PHP file into different files such as a setting.php.
-
-Plugin Update Checker is being used to push updates.
 
 ## Version 2
 
