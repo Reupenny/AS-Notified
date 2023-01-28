@@ -43,9 +43,9 @@ Stay informed about new comments on your website.
 
 ## Complete
 
-⬛️ Add options in settings to disable and enable each notification type.
+🟩 Add options in settings to disable and enable each notification type.
 
-⬛️ Seperate out the single PHP file into different files such as a setting.php.
+🟩 Seperate out the single PHP file into different files such as a setting.php.
 
 ## Version 2
 
