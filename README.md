@@ -5,7 +5,7 @@ A Wordpress plugin to keep you notified of the important things.
 Please note this is my first plugin for wordpress and i am new to PHP.
 
 <div align="center" width="100%">
-    <img src="./Screenshot_1.png" alt="" />
+    <img src=".Screenshot_1.png" alt="" />
 </div>
 
 ## To Do List
