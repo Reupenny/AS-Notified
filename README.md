@@ -31,7 +31,7 @@ Stay informed about new comments on your website.
     <img src="public/Screenshot_1.png" alt="" />
 </div>
 
-## To Do List
+## To Do List for V1 Release
 
 🔲 Create a multisite instance
 
