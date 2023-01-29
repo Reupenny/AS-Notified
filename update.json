@@ -5,8 +5,18 @@
 	"tested": "5.8.6",
 	"author": "Azure Studio",
 	"author_homepage": "https://azurestudio.co.nz",
-	"plugin_homepage": "https://github.com/Reupenny/Better-Notified",
+	"homepage": "https://github.com/Reupenny/Better-Notified",
+	"last_updated": "2023-01-0528 22:00:00",
+	"banners": {
+		"low": "https://reupenny.github.io/Better-Notified/public/banner-772x250.png",
+		"high": "https://reupenny.github.io/Better-Notified/public/banner-1544x500.png",
+	},
+	"icons": {
+		"1x": "https://reupenny.github.io/Better-Notified/public/icon-128x128.png",
+		"2x": "https://reupenny.github.io/Better-Notified/public/icon-256x256.png",
+		"svg": "https://reupenny.github.io/Better-Notified/public/icon.svg",
+	},
 	"sections": {
 		"description": "A Wordpress plugin to keep you notified of the important things."
-	}
+	},
 }
