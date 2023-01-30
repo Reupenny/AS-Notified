@@ -1,6 +1,6 @@
 # Better Notified 🔔
 
-<a target="_blank" href="https://github.com/Reupenny/Better-Notified"><img alt="GitHub tag (latest by date)" src="https://img.shields.io/github/v/tag/Reupenny/Better-Notified?label=Version"></a> <a target="_blank" href="https://github.com/Reupenny/Better-Notified"><img alt="GitHub last commit (by committer)" src="https://img.shields.io/github/last-commit/Reupenny/Better-Notified"></a> <a target="_blank" href="https://github.com/Reupenny/Better-Notified"><img alt="GitHub commits since latest release (by date including pre-releases)" src="https://img.shields.io/github/commits-since/Reupenny/Better-Notified/v0.1.2-beta?include_prereleases"></a> <a target="_blank" href="https://github.com/Reupenny/Better-Notified"><img alt="GitHub file size in bytes on a specified ref (branch/commit/tag)" src="https://img.shields.io/github/size/Reupenny/Better-Notified/versions/Better-Notified-0.1.2b.zip?label=Plugin%20size"></a>
+<a target="_blank" href="https://github.com/Reupenny/Better-Notified"><img alt="GitHub tag (latest by date)" src="https://img.shields.io/github/v/tag/Reupenny/Better-notified?label=version"></a> <a target="_blank" href="https://github.com/Reupenny/Better-Notified"><img alt="GitHub last commit (by committer)" src="https://img.shields.io/github/last-commit/Reupenny/Better-Notified"></a> <a target="_blank" href="https://github.com/Reupenny/Better-Notified"><img alt="GitHub commits since latest release (by date including pre-releases)" src="https://img.shields.io/github/commits-since/Reupenny/Better-Notified/v0.1.2-beta?include_prereleases"></a> <a target="_blank" href="https://github.com/Reupenny/Better-Notified"><img alt="GitHub file size in bytes on a specified ref (branch/commit/tag)" src="https://img.shields.io/github/size/Reupenny/Better-Notified/versions/Better-Notified-0.1.2b.zip?label=Plugin%20size"></a>
 
 <div align="center" width="100%">
     <img src="./public/icon.svg" width="150" alt="" />
@@ -43,15 +43,19 @@ Stay informed about new comments on your website.
 
 🔲 Add setting toggle to enable/disable silent notifications
 
-🔲 Add Woocommerce intergration, new orders, reviews
+🔲 Add Woocommerce integration, new orders, reviews
 
 🔲 Create uninstall.php
 
 🔲 Set up Plugin Update Checker to pull from GitHub releases
 
+🔲 Multiple Telegram Chat IDs for different notifications, so developers can get notifications about the WP install and business owners can get notifications about Comments and the likes.
+
+🔲 Finish install and useage documentation
+
 ## In consideration
 
-🔷 Multiple Telegram Chat IDs for different notifications, so developers can get notifications about the WP install and business owners can get notifications about Comments and the likes.
+Currently all ideas are being implemented
 
 ## Complete
 

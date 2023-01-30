@@ -87,3 +87,73 @@ function Better_Notified_admin_emails($error)
         }
     }
 }
+
+//
+// Woocommerce
+//
+
+
+
+// New Order
+function Better_Notified_new_order_notification($order_id)
+{
+    if (get_option('new_order_notifications') == 1) {
+        // Send notification code
+        $telegram_bot_token = get_option('Telegram_bot_token');
+        //check if a different chat id is being used for woocommerce
+        if (get_option('Telegram_WooCommerce_chat_id') == 1) {
+            $telegram_chat_id = get_option('Telegram_WooCommerce_chat_id');
+        } else {
+            $telegram_chat_id =  get_option('Telegram_chat_id');
+        }
+        $order = wc_get_order($order_id);
+        $order_link = $order->get_edit_order_url();
+        $message = "New order received! Order ID: " . $order->get_order_number() . " Total: " . $order->get_total() . " - " . $order_link;
+        if (!empty($telegram_bot_token) && !empty($telegram_chat_id)) {
+            $telegram_api_url = 'https://api.telegram.org/bot' . $telegram_bot_token . '/sendMessage?chat_id=' . $telegram_chat_id . '&text=' . urlencode($message);
+            wp_remote_get($telegram_api_url);
+        }
+    }
+}
+// Low stock notification
+function Better_Notified_low_stock_notification()
+{
+    if (get_option('low_stock_notifications') == 1) {
+        $low_stock_threshold = get_option('low_stock_threshold');
+        $args = array(
+            'post_type' => 'product',
+            'post_status' => 'publish',
+            'meta_query' => array(
+                array(
+                    'key' => '_stock',
+                    'value' => $low_stock_threshold,
+                    'compare' => '<=',
+                    'type' => 'NUMERIC'
+                ),
+                array(
+                    'key' => '_manage_stock',
+                    'value' => 'yes',
+                    'compare' => '='
+                )
+            )
+        );
+        $low_stock_products = get_posts($args);
+        if (!empty($low_stock_products)) {
+            $telegram_bot_token = get_option('Telegram_bot_token');
+            //check if a different chat id is being used for woocommerce
+            if (get_option('Telegram_WooCommerce_chat_id') == 1) {
+                $telegram_chat_id = get_option('Telegram_WooCommerce_chat_id');
+            } else {
+                $telegram_chat_id =  get_option('Telegram_chat_id');
+            }
+            $message = "Attention: The following products are low in stock: \n";
+            foreach ($low_stock_products as $product) {
+                $message .= $product->post_title . ' - ' . get_post_meta($product->ID, '_stock', true) . " in stock \n";
+            }
+            if (!empty($telegram_bot_token) && !empty($telegram_chat_id)) {
+                $telegram_api_url = 'https://api.telegram.org/bot' . $telegram_bot_token . '/sendMessage?chat_id=' . $telegram_chat_id . '&text=' . urlencode($message);
+                wp_remote_get($telegram_api_url);
+            }
+        }
+    }
+}
