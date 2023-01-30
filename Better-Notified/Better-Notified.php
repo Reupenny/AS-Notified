@@ -11,8 +11,11 @@
  */
 
 // Update Core.
-require("plugin-update-checker/plugin-update-checker.php");
-$myUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
+require 'plugin-update-checker/plugin-update-checker.php';
+
+use YahnisElsts\PluginUpdateChecker\v5\PucFactory;
+
+$myUpdateChecker = PucFactory::buildUpdateChecker(
     'https://reupenny.github.io/Better-Notified/update.json',
     __FILE__, //Full path to the main plugin file or functions.php.
     'Better-Notified'

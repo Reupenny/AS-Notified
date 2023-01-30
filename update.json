@@ -18,7 +18,7 @@
 	},
 	"sections": {
 		"description": "A Wordpress plugin to keep you notified of the important things.",
-		"installation": "(Recommended) Installation instructions.",
-		"changelog": "(Recommended) Changelog. <p> - Fix capitilisation of services folder </br> - Update Plugin Update Checker to v5 </p>"
+		"installation": "Installation instructions.",
+		"changelog": "<p> - Fix capitilisation of services folder </br> - Update Plugin Update Checker to v5 </p>"
 	}
 }
