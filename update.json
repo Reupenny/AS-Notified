@@ -1,12 +1,12 @@
 {
 	"name": "Better-Notified",
-	"version": "0.1.1 beta",
-	"download_url": "https://reupenny.github.io/Better-Notified/versions/Better-Notified-0.1.1b.zip",
+	"version": "0.1.2 beta",
+	"download_url": "https://reupenny.github.io/Better-Notified/versions/Better-Notified-0.1.2b.zip",
 	"tested": "5.8.6",
 	"author": "Azure Studio",
 	"author_homepage": "https://azurestudio.co.nz",
 	"homepage": "https://github.com/Reupenny/Better-Notified",
-	"last_updated": "2023-01-28 22:00:00",
+	"last_updated": "2023-01-30 17:00:00",
 	"banners": {
 		"low": "https://reupenny.github.io/Better-Notified/public/banner-772x250.png",
 		"high": "https://reupenny.github.io/Better-Notified/public/banner-1544x500.png"
@@ -17,6 +17,6 @@
 		"svg": "https://reupenny.github.io/Better-Notified/public/icon.svg"
 	},
 	"sections": {
-		"description": "A Wordpress plugin to keep you notified of the important things."
+		"description": "A Wordpress plugin to keep you notified of the important things. // - Fix capitilisation of services folder."
 	}
 }
