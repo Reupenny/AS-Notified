@@ -3,7 +3,7 @@
 /**
  * Plugin Name: Better Notified
  * Description: A Wordpress plugin to keep you notified of the important things.
- * Version:     0.1.1 beta
+ * Version:     0.1.2 beta
  * Author:      Azure Studio
  * Author URI:  https://azurestudio.co.nz
  * Plugin URI:  https://azurestudio.co.nz/plugins/
