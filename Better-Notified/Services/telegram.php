@@ -6,7 +6,12 @@ function Better_Notified_new_user_notification($user_id)
     if (get_option('new_user_notifications') == 1) {
         // Send notification code
         $telegram_bot_token = get_option('Telegram_bot_token');
-        $telegram_chat_id = get_option('Telegram_chat_id');
+        //check if a different chat id is being used for woocommerce
+        if (!empty(get_option('Telegram_general_chat_id'))) {
+            $telegram_chat_id = get_option('Telegram_general_chat_id');
+        } else {
+            $telegram_chat_id = get_option('Telegram_chat_id');
+        }
         $user_info = get_userdata($user_id);
         $message = "New user registered: " . $user_info->user_login;
         if (!empty($telegram_bot_token) && !empty($telegram_chat_id)) {
@@ -58,7 +63,12 @@ function Better_Notified_comments_notification($comment_ID, $comment_approved)
     if (get_option('comments_notifications') == 1) {
         // Send notification code
         $telegram_bot_token = get_option('Telegram_bot_token');
-        $telegram_chat_id = get_option('Telegram_chat_id');
+        //check if a different chat id is being used for woocommerce
+        if (!empty(get_option('Telegram_general_chat_id'))) {
+            $telegram_chat_id = get_option('Telegram_general_chat_id');
+        } else {
+            $telegram_chat_id = get_option('Telegram_chat_id');
+        }
         $comment = get_comment($comment_ID);
         $comment_author = $comment->comment_author;
         $comment_content = $comment->comment_content;
@@ -101,10 +111,10 @@ function Better_Notified_new_order_notification($order_id)
         // Send notification code
         $telegram_bot_token = get_option('Telegram_bot_token');
         //check if a different chat id is being used for woocommerce
-        if (get_option('Telegram_WooCommerce_chat_id') == 1) {
+        if (!empty(get_option('Telegram_WooCommerce_chat_id'))) {
             $telegram_chat_id = get_option('Telegram_WooCommerce_chat_id');
         } else {
-            $telegram_chat_id =  get_option('Telegram_chat_id');
+            $telegram_chat_id = get_option('Telegram_chat_id');
         }
         $order = wc_get_order($order_id);
         $order_link = $order->get_edit_order_url();
@@ -141,10 +151,10 @@ function Better_Notified_low_stock_notification()
         if (!empty($low_stock_products)) {
             $telegram_bot_token = get_option('Telegram_bot_token');
             //check if a different chat id is being used for woocommerce
-            if (get_option('Telegram_WooCommerce_chat_id') == 1) {
+            if (!empty(get_option('Telegram_WooCommerce_chat_id'))) {
                 $telegram_chat_id = get_option('Telegram_WooCommerce_chat_id');
             } else {
-                $telegram_chat_id =  get_option('Telegram_chat_id');
+                $telegram_chat_id = get_option('Telegram_chat_id');
             }
             $message = "Attention: The following products are low in stock: \n";
             foreach ($low_stock_products as $product) {
@@ -154,6 +164,27 @@ function Better_Notified_low_stock_notification()
                 $telegram_api_url = 'https://api.telegram.org/bot' . $telegram_bot_token . '/sendMessage?chat_id=' . $telegram_chat_id . '&text=' . urlencode($message);
                 wp_remote_get($telegram_api_url);
             }
+        }
+    }
+}
+// New product review
+function Better_Notified_new_review_notification($comment_id)
+{
+    if (get_option('new_review_notifications') == 1) {
+        // Send notification code
+        $telegram_bot_token = get_option('Telegram_bot_token');
+        //check if a different chat id is being used for woocommerce
+        if (!empty(get_option('Telegram_WooCommerce_chat_id'))) {
+            $telegram_chat_id = get_option('Telegram_WooCommerce_chat_id');
+        } else {
+            $telegram_chat_id = get_option('Telegram_chat_id');
+        }
+        $comment = get_comment($comment_id);
+        $rating = intval(get_comment_meta($comment_id, 'rating', true));
+        $message = "New review received: " . $comment->comment_content . " (rating: " . $rating . " stars)";
+        if (!empty($telegram_bot_token) && !empty($telegram_chat_id)) {
+            $telegram_api_url = 'https://api.telegram.org/bot' . $telegram_bot_token . '/sendMessage?chat_id=' . $telegram_chat_id . '&text=' . urlencode($message);
+            wp_remote_get($telegram_api_url);
         }
     }
 }

@@ -12,6 +12,8 @@ Better Notified helps you stay informed about important events on your website. 
 
 Please note this is my first plugin for wordpress and I am new to PHP.
 
+If you use and enjoy Better Notified consider Making a donation to support its development [Donate](https://azurestudio.co.nz)
+
 ## Features
 
 🔷 Failed email notifications:

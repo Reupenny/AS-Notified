@@ -23,6 +23,7 @@ function Better_Notified_settings_page()
     $Telegram_bot_token = get_option('Telegram_bot_token');
     $Telegram_chat_id = get_option('Telegram_chat_id');
     $Telegram_WooCommerce_chat_id = get_option('Telegram_WooCommerce_chat_id');
+    $Telegram_general_chat_id = get_option('Telegram_general_chat_id');
 
 ?>
     <style>
@@ -119,6 +120,10 @@ function Better_Notified_settings_page()
                                         <label for="low_stock_notifications">
                                             <input type="checkbox" name="low_stock_notifications" id="low_stock_notifications" value="1" <?php checked(1, get_option('low_stock_notifications'), true); ?>><?php esc_html_e('Low stock', 'telegram-admin-emails'); ?>
                                         </label>
+                                        </br>
+                                        <label for="review_notifications">
+                                            <input type="checkbox" name="review_notifications" id="review_notifications" value="1" <?php checked(1, get_option('review_notifications'), true); ?>><?php esc_html_e('Product reviews', 'telegram-admin-emails'); ?>
+                                        </label>
                                     </fieldset>
                                 </td>
                             </tr>
@@ -145,8 +150,7 @@ function Better_Notified_settings_page()
                                     <label for="Telegram_bot_token"><?php esc_html_e('Telegram Bot Token', 'better-notified-telegram-settings'); ?></label>
                                 </th>
                                 <td>
-                                    <input name="Telegram_bot_token" type="text" id="Telegram_bot_token" class="Telegram_bot_token" value="<?php
-                                                                                                                                            echo esc_attr($Telegram_bot_token); ?>" class="regular-text">
+                                    <input name="Telegram_bot_token" type="text" id="Telegram_bot_token" class="Telegram_bot_token" value="<?php echo esc_attr($Telegram_bot_token); ?>" class="regular-text">
                                     <p class="description" id="Telegram_bot_token-description">
                                         <?php esc_html_e('Enter your Telegram bot token. You can create a new bot and get its token from the Bot Father.', 'better-notified-telegram-settings'); ?>
                                     </p>
@@ -170,11 +174,21 @@ function Better_Notified_settings_page()
                         <tbody>
                             <tr>
                                 <th scope="row">
+                                    <label for="Telegram_general_chat_id"><?php esc_html_e('General', 'better-notified-telegram-settings'); ?></label>
+                                </th>
+                                <td>
+                                    <input name="Telegram_general_chat_id" type="text" id="Telegram_general_chat_id" class="Telegram_general_chat_id" value="<?php echo esc_attr($Telegram_general_chat_id); ?>" class="regular-text">
+                                    <p class="description" id="Telegram_general_chat_id-description">
+                                        <?php esc_html_e('Optional - Enter the Chat ID you want to use to receve general wordpress notifications. (new users, comments etc) You can use a group chat ID or a user chat ID.', 'better-notified-telegram-settings'); ?>
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">
                                     <label for="Telegram_WooCommerce_chat_id"><?php esc_html_e('Woocommerce', 'better-notified-telegram-settings'); ?></label>
                                 </th>
                                 <td>
-                                    <input name="Telegram_WooCommerce_chat_id" type="text" id="Telegram_WooCommerce_chat_id" class="Telegram_WooCommerce_chat_id" value="<?php
-                                                                                                                                                                            echo esc_attr($Telegram_WooCommerce_chat_id); ?>" class="regular-text">
+                                    <input name="Telegram_WooCommerce_chat_id" type="text" id="Telegram_WooCommerce_chat_id" class="Telegram_WooCommerce_chat_id" value="<?php echo esc_attr($Telegram_WooCommerce_chat_id); ?>" class="regular-text">
                                     <p class="description" id="Telegram_WooCommerce_chat_id-description">
                                         <?php esc_html_e('Optional - Enter the Chat ID you want to use to receve Woocommerce notifications. You can use a group chat ID or a user chat ID.', 'better-notified-telegram-settings'); ?>
                                     </p>
@@ -189,7 +203,7 @@ function Better_Notified_settings_page()
                 </form>
             </div>
         </div>
-        <div class="coffee"><a href="https://azurestudio.co.nz" target="_blank"><img class="coffee_img" src="https://github.com/Reupenny/Better-Notified/blob/main/public/banner-1544x500.png?raw=true" width=""></a></div>
+        <div class="coffee"><a href="https://azurestudio.co.nz" target="_blank"><img class="coffee_img" src="https://reupenny.github.io/Better-Notified/public/coffee.png" width=""></a></div>
     </div>
     <script>
         jQuery(document).ready(function($) {
