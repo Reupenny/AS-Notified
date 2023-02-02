@@ -15,7 +15,7 @@ function Better_Notified_new_user_notification($user_id)
         $user_info = get_userdata($user_id);
         $message = "New user registered: " . $user_info->user_login;
         if (!empty($telegram_bot_token) && !empty($telegram_chat_id)) {
-            $telegram_api_url = 'https://api.telegram.org/bot' . $telegram_bot_token . '/sendMessage?chat_id=' . $telegram_chat_id . '&text=' . urlencode($message);
+            $telegram_api_url = 'https://api.telegram.org/bot' . $telegram_bot_token . '/sendMessage?chat_id=' . $telegram_chat_id . '&text=' . urlencode($message) . '&disable_notification=true';
             wp_remote_get($telegram_api_url);
         }
     }
@@ -77,7 +77,7 @@ function Better_Notified_comments_notification($comment_ID, $comment_approved)
         $post_link = get_permalink($post_id);
         $comment_link = $post_link . "#comment-" . $comment_ID;
         if (!empty($telegram_bot_token) && !empty($telegram_chat_id)) {
-            $message = "New comment by " . $comment_author . "\n" . $comment_content . "\n" . "Comment on: " . $post_title . "\n\n\n " . $comment_link;
+            $message = "New comment by " . $comment_author . "\n" . $comment_content . "\n" . "Comment on: " . $post_title . "\n" . $comment_link;
             $telegram_api_url = 'https://api.telegram.org/bot' . $telegram_bot_token . '/sendMessage?chat_id=' . $telegram_chat_id . '&text=' . urlencode($message) . '&parse_mode=HTML';
             wp_remote_get($telegram_api_url);
         }
@@ -118,13 +118,14 @@ function Better_Notified_new_order_notification($order_id)
         }
         $order = wc_get_order($order_id);
         $order_link = $order->get_edit_order_url();
-        $message = "New order received! Order ID: " . $order->get_order_number() . " Total: " . $order->get_total() . " - " . $order_link;
+        $message = "New order received!" . "\n" . "Order #" . $order->get_order_number() . "\n" . "Total: " . $order->get_total() . " \n" . $order_link;
         if (!empty($telegram_bot_token) && !empty($telegram_chat_id)) {
             $telegram_api_url = 'https://api.telegram.org/bot' . $telegram_bot_token . '/sendMessage?chat_id=' . $telegram_chat_id . '&text=' . urlencode($message);
             wp_remote_get($telegram_api_url);
         }
     }
 }
+
 // Low stock notification
 function Better_Notified_low_stock_notification()
 {
@@ -186,5 +187,51 @@ function Better_Notified_new_review_notification($comment_id)
             $telegram_api_url = 'https://api.telegram.org/bot' . $telegram_bot_token . '/sendMessage?chat_id=' . $telegram_chat_id . '&text=' . urlencode($message);
             wp_remote_get($telegram_api_url);
         }
+    }
+}
+
+
+//
+//
+// CUSTOMERS
+//
+//
+
+
+//New Order
+function Better_Notified_new_order_notification_user($order_id)
+{
+    // Send notification code
+    $telegram_bot_token = get_option('Telegram_bot_token');
+    $order = wc_get_order($order_id);
+    $user_id = $order->get_user_id();
+    $telegram_chat_id = get_user_meta($user_id, 'telegram_chat_id', true);
+    $order_link = $order->get_view_order_url();
+    $status = $order->get_status();
+    // Check if the user has a telegram chat ID and if it's not empty
+    $message = "Your order has been received!" . "\n" . "Order #" . $order->get_order_number() . "\n" . "Total: " . $order->get_total() . "\n" . "Status: " . $order->get_status() . "\n" . $order_link;
+    // ... send the message to Telegram
+    if (!empty($telegram_bot_token) && !empty($telegram_chat_id)) {
+        $telegram_api_url = 'https://api.telegram.org/bot' . $telegram_bot_token . '/sendMessage?chat_id=' . $telegram_chat_id . '&text=' . urlencode($message);
+        wp_remote_get($telegram_api_url);
+    }
+}
+
+
+// Order Status Changed
+function Better_Notified_order_status_change($order_id, $old_status, $new_status)
+{
+    // Send notification code
+    $telegram_bot_token = get_option('Telegram_bot_token');
+    $order = wc_get_order($order_id);
+    $user_id = $order->get_user_id();
+    $telegram_chat_id = get_user_meta($user_id, 'telegram_chat_id', true);
+    $order_link = $order->get_view_order_url();
+    // Check if the user has a telegram chat ID and if it's not empty
+    $message =  "Your order status has been updated." . "\n" . sprintf('Status: %s', $new_status) . "\n" . "Order #" . $order->get_order_number() . "\n" . $order_link;;
+    // ... send the message to Telegram
+    if (!empty($telegram_bot_token) && !empty($telegram_chat_id)) {
+        $telegram_api_url = 'https://api.telegram.org/bot' . $telegram_bot_token . '/sendMessage?chat_id=' . $telegram_chat_id . '&text=' . urlencode($message);
+        wp_remote_get($telegram_api_url);
     }
 }

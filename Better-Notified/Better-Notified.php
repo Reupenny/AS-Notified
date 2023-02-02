@@ -38,6 +38,11 @@ add_action('woocommerce_new_order', 'Better_Notified_new_order_notification', 10
 add_action('woocommerce_low_stock_notification', 'Better_Notified_low_stock_notification');
 add_action('woocommerce_product_review_added', 'Better_Notified_new_product_review_notification');
 
+//Customers
+add_action('woocommerce_order_status_changed', 'Better_Notified_order_status_change', 10, 3);
+add_action('woocommerce_new_order', 'Better_Notified_new_order_notification_user', 10, 1);
+
+
 //Create menus
 function Better_Notified_create_menu()
 {
@@ -45,6 +50,7 @@ function Better_Notified_create_menu()
     register_setting('better-notified-telegram-settings', 'Telegram_chat_id');
     register_setting('better-notified-telegram-settings', 'Telegram_WooCommerce_chat_id');
     register_setting('better-notified-telegram-settings', 'Telegram_general_chat_id');
+    register_setting('better-notified-telegram-settings', 'user_telegram_notifications');
     register_setting('telegram-admin-emails', 'new_user_notifications', 'intval');
     register_setting('telegram-admin-emails', 'plugin_update_notifications', 'intval');
     register_setting('telegram-admin-emails', 'core_update_notifications', 'intval');
@@ -76,3 +82,4 @@ function Better_Notified_create_network_menu()
 }
 require_once(plugin_dir_path(__FILE__) . 'settings-page.php');
 require_once(plugin_dir_path(__FILE__) . 'services.php');
+require_once(plugin_dir_path(__FILE__) . 'customers.php');

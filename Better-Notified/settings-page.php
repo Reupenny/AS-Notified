@@ -196,6 +196,23 @@ function Better_Notified_settings_page()
                             </tr>
                         </tbody>
                     </table>
+                    <h2><?php esc_html_e('User & customer options', 'Better-Notified-option'); ?></h2>
+                    <table class="form-table">
+                        <tbody>
+                            <tr>
+                                <th scope="row">
+                                    <label for="admin_notifications"><?php esc_html_e('Admin', 'telegram-admin-emails'); ?></label>
+                                </th>
+                                <td>
+                                    <fieldset>
+                                        <label for="user_telegram_notifications">
+                                            <input type="checkbox" name="user_telegram_notifications" id="user_telegram_notifications" value="1" <?php checked(1, get_option('user_telegram_notifications'), true); ?>><?php esc_html_e('Allow Customers/ Users to get Telegram notifications', 'telegram-admin-emails'); ?>
+                                        </label>
+                                    </fieldset>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                     <?php submit_button();
                     register_setting('better-notified-telegram-settings', 'better-notified-telegram-settings', 'better-notified-telegram-settings', 'better-notified-telegram-settings', 'better-notified-telegram-settings', 'better-notified-telegram-settings', 'better-notified-telegram-settings');
                     add_settings_section('better-notified-telegram-settings-section', 'Better Notified yelegram Settings', '', 'better-notified-telegram-settings');
@@ -203,7 +220,9 @@ function Better_Notified_settings_page()
                 </form>
             </div>
         </div>
-        <div class="coffee"><a href="https://azurestudio.co.nz" target="_blank"><img class="coffee_img" src="https://reupenny.github.io/Better-Notified/public/coffee.png" width=""></a></div>
+        <div class="coffee"><a href="https://azurestudio.co.nz" target="_blank"><img class="coffee_img" src="https://reupenny.github.io/Better-Notified/public/coffee.png" width=""></a></br>
+            <a href="https://github.com/Reupenny/Better-Notified" target="_blank">View GitHub Page</a>
+        </div>
     </div>
     <script>
         jQuery(document).ready(function($) {
