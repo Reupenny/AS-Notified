@@ -39,7 +39,7 @@ Allow your users & customers to get order updaytes through telegram
 🔷 Plugin Update Checker is being used to push updates. [GitHub](https://github.com/YahnisElsts/plugin-update-checker)
 
 <div align="center" width="100%">
-    <img src="public/Screenshot_1.png" alt="" />
+    <img src="public/Screenshot_2.png" alt="" />
 </div>
 
 ## To Do List for V1 Release
@@ -49,8 +49,6 @@ Allow your users & customers to get order updaytes through telegram
 🔲 Add setting toggle to enable/disable silent notifications
 
 🔲 Create uninstall.php
-
-🔲 Set up Plugin Update Checker to pull from GitHub releases
 
 🔲 Finish install and useage documentation
 
@@ -70,12 +68,11 @@ Allow your users & customers to get order updaytes through telegram
 
 🟩 Add Woocommerce integration, new orders, reviews & low stock
 
-🟩 Allow users to add there own notification service instead of emails
-    changeable in user settings and also via a shortcode to be accessable on the front end
+🟩 Allow users/ customers to add there own telegram id so they can receve personalised updates, changeable in user settings and also via a shortcode to be accessable on the front end
 
 ## Version 2
 
-🔲 Add Discord, Slack, Pushover, Gotify Notification Options
+🔲 Add Discord, Slack, Pushover, Gotify Notification Options FB messenger? nto sure if that avalable
 
 🔲 Create optiosn in settings to allow admins to edit default messages
 
