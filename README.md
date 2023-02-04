@@ -54,6 +54,10 @@ Allow your users & customers to get order updaytes through telegram
 
 🔲 finsinsh adding notification types
 
+🔲 Add option in settings to toggle display of wordpress site name in notifications
+
+🔲 Add QR code and link in shortcode to get customer to add bot
+
 ## In consideration
 
 🔲 Create a multisite instance

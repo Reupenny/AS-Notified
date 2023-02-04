@@ -7,6 +7,7 @@ function Better_Notified_admin_scripts()
 }
 add_action('admin_enqueue_scripts', 'Better_Notified_admin_scripts');
 
+
 $admin_colors;
 add_action('admin_head', function () {
     global $_wp_admin_css_colors;
