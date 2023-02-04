@@ -76,7 +76,7 @@ Allow your users & customers to get order updaytes through telegram
 
 ## Version 2
 
-🔲 Add Discord, Slack, Pushover, Gotify Notification Options FB messenger? nto sure if that avalable
+🔲 Add Discord, Slack, Pushover, Gotify Notification Options FB messenger & whats app? not sure if thats possible
 
 🔲 Create optiosn in settings to allow admins to edit default messages
 
